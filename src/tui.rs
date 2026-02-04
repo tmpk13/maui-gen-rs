@@ -1,6 +1,6 @@
-use crossterm::event::{self, KeyCode, KeyEvent, KeyEventKind, Event};
+use crossterm::event::{self, Event, KeyCode, KeyEvent, KeyEventKind};
 use ratatui::layout::Rect;
-use ratatui::style::{Stylize};
+use ratatui::style::Stylize;
 use ratatui::Frame;
 use ratatui::{
     buffer::Buffer,
@@ -83,6 +83,9 @@ impl Widget for &App {
             .title_bottom(instructions.centered())
             .border_set(border::ROUNDED);
 
-        
+        let paragraph = Paragraph::default()
+            .alignment(ratatui::layout::HorizontalAlignment::Center)
+            .block(block)
+            .render(area, buf);
     }
 }
