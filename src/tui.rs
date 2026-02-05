@@ -1,6 +1,6 @@
 use crossterm::event::{self, Event, KeyCode, KeyEvent, KeyEventKind};
 use ratatui::layout::Rect;
-use ratatui::style::Stylize;
+use ratatui::style::{Style, Stylize};
 use ratatui::Frame;
 use ratatui::{
     buffer::Buffer,
@@ -78,6 +78,14 @@ impl Widget for &App {
             self.cursor_position.to_string().green(),
             " ".into(),
         ]);
+
+        let list_items = ["wow"];
+        let list = List::new(list_items)
+            .block(Block::bordered().title("Components"))
+            .highlight_style(Style::new().reversed())
+            .highlight_symbol(">")
+            .render(area, buf);
+
         let block = Block::bordered()
             .title(title.centered())
             .title_bottom(instructions.centered())
